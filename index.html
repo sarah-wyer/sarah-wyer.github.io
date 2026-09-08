@@ -59,13 +59,14 @@ header{padding:clamp(3.5rem,11vh,7.5rem) 0 clamp(2.5rem,6vh,4rem)}
 }
 h1{
   font-family:"Instrument Serif",Georgia,serif;font-weight:400;
-  font-size:clamp(2.9rem,10vw,5.4rem);line-height:.92;letter-spacing:-.015em;
+  font-size:clamp(3.1rem,11.5vw,6.2rem);line-height:.86;letter-spacing:-.035em;
   margin:0 0 clamp(1.4rem,4vh,2.2rem);
+  border-bottom:1px solid var(--rule);padding-bottom:clamp(1rem,3vh,1.6rem);
 }
 .statement{
   font-family:"Instrument Serif",Georgia,serif;
-  font-size:clamp(1.5rem,4.4vw,2.5rem);line-height:1.2;letter-spacing:-.01em;
-  max-width:26ch;margin:0 0 2rem;color:var(--ink);
+  font-size:clamp(1.6rem,4.8vw,2.7rem);line-height:1.14;letter-spacing:-.022em;
+  max-width:24ch;margin:0 0 2rem;color:var(--ink);
 }
 .statement em{font-style:italic;color:var(--accent)}
 .lede{max-width:var(--measure);color:var(--ink-2);margin:0}
@@ -77,15 +78,23 @@ h1{
 }
 
 /* ---------- rules & sections ---------- */
+body{counter-reset:sec}
 section{
   border-top:1px solid var(--rule);
   padding:clamp(2.25rem,6vh,3.5rem) 0;
+  counter-increment:sec;
 }
 .sec-grid{display:grid;grid-template-columns:11rem 1fr;gap:clamp(1rem,4vw,3rem)}
 @media (max-width:46rem){.sec-grid{grid-template-columns:1fr;gap:1rem}}
 h2{
   font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
   color:var(--accent);margin:.35rem 0 0;
+}
+h2::before{
+  content:counter(sec,decimal-leading-zero);
+  display:block;font-family:"Instrument Serif",Georgia,serif;
+  font-size:1.6rem;letter-spacing:0;text-transform:none;font-weight:400;
+  color:var(--ink-2);line-height:1;margin-bottom:.5rem;
 }
 .body{max-width:var(--measure)}
 .body p{margin:0 0 1.1rem}
@@ -120,15 +129,22 @@ h3{
 
 /* venues: no dates, so the record reads as a body of work */
 .venues{list-style:none;margin:1.4rem 0 0;padding:0;
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(1.25rem,3vw,2.5rem)}
-@media (max-width:46rem){.venues{grid-template-columns:1fr}}
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
 .venues li{padding:.85rem 0;border-top:1px solid var(--rule)}
+.venues li:nth-child(odd){padding-right:clamp(1.25rem,3vw,2.25rem)}
+.venues li:nth-child(even){
+  padding-left:clamp(1.25rem,3vw,2.25rem);border-left:1px solid var(--rule)}
+@media (max-width:46rem){
+  .venues{grid-template-columns:1fr}
+  .venues li:nth-child(odd),.venues li:nth-child(even){
+    padding-left:0;padding-right:0;border-left:0}
+}
 .venues strong{display:block;font-weight:700;font-size:1.02rem}
 .venues span{display:block;color:var(--ink-2);font-size:.9rem;margin-top:.1rem}
 .badge{
   display:inline-block;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
   font-weight:700;color:var(--accent);border:1px solid var(--accent);
-  border-radius:2px;padding:.12rem .4rem;margin-left:.45rem;vertical-align:.09em;
+  padding:.12rem .4rem;margin-left:.45rem;vertical-align:.09em;
 }
 
 /* ---------- contact ---------- */
@@ -137,7 +153,7 @@ h3{
 .cta{
   display:inline-block;font-weight:700;font-size:.95rem;letter-spacing:.02em;
   color:var(--paper);background:var(--ink);text-decoration:none;
-  padding:.72rem 1.5rem;border-radius:2px;margin-top:.4rem;
+  padding:.72rem 1.5rem;margin-top:.4rem;
   transition:background .18s ease,transform .18s ease;
 }
 .cta:hover{background:var(--accent);transform:translateY(-1px)}
