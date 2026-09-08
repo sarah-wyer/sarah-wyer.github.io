@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sarah Wyer — Discrimination in AI systems</title>
+<meta name="description" content="Sarah Wyer finds discrimination in AI systems and shows organisations what to do about it. PhD researcher, Durham University. Creator of Discrimination DRIFT.">
+<meta property="og:title" content="Sarah Wyer">
+<meta property="og:description" content="I find discrimination in AI systems, and I show organisations what to do about it.">
+<meta property="og:type" content="profile">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23161310'/><text y='.9em' x='.12em' font-size='78' font-family='Georgia,serif' fill='%23E8DFD0'>W</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Karla:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F2EA;
+  --paper-2:#EFE9DD;
+  --ink:#161310;
+  --ink-2:#57503F;
+  --rule:#D9D0BE;
+  --accent:#9A3B25;
+  --accent-soft:#C4623F;
+  --measure:34rem;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#12100D;
+    --paper-2:#1A1713;
+    --ink:#EDE6D8;
+    --ink-2:#A39B88;
+    --rule:#332D24;
+    --accent:#E0764F;
+    --accent-soft:#C4623F;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Karla",ui-sans-serif,system-ui,sans-serif;
+  font-weight:400;
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+/* faint paper tooth */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{position:relative;z-index:1;max-width:60rem;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem)}
+
+/* ---------- masthead ---------- */
+header{padding:clamp(3.5rem,11vh,7.5rem) 0 clamp(2.5rem,6vh,4rem)}
+.eyebrow{
+  font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:500;margin:0 0 clamp(1.5rem,4vh,2.5rem)
+}
+h1{
+  font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+  font-size:clamp(2.9rem,10vw,5.4rem);line-height:.92;letter-spacing:-.015em;
+  margin:0 0 clamp(1.4rem,4vh,2.2rem);
+}
+.statement{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:clamp(1.5rem,4.4vw,2.5rem);line-height:1.2;letter-spacing:-.01em;
+  max-width:26ch;margin:0 0 2rem;color:var(--ink);
+}
+.statement em{font-style:italic;color:var(--accent)}
+.lede{max-width:var(--measure);color:var(--ink-2);margin:0}
+.lede a{color:inherit}
+
+/* ---------- rules & sections ---------- */
+section{
+  border-top:1px solid var(--rule);
+  padding:clamp(2.25rem,6vh,3.5rem) 0;
+}
+.sec-grid{display:grid;grid-template-columns:11rem 1fr;gap:clamp(1rem,4vw,3rem)}
+@media (max-width:46rem){.sec-grid{grid-template-columns:1fr;gap:1rem}}
+h2{
+  font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
+  color:var(--accent);margin:.35rem 0 0;
+}
+.body{max-width:var(--measure)}
+.body p{margin:0 0 1.1rem}
+.body p:last-child{margin-bottom:0}
+h3{
+  font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+  font-size:clamp(1.55rem,3.6vw,2.05rem);line-height:1.15;letter-spacing:-.01em;
+  margin:0 0 .85rem;
+}
+.pull{
+  font-family:"Instrument Serif",Georgia,serif;font-size:1.35rem;line-height:1.35;
+  color:var(--ink);border-left:2px solid var(--accent);padding-left:1.1rem;margin:0 0 1.3rem;
+}
+
+/* ---------- lists ---------- */
+.entries{list-style:none;margin:0;padding:0;max-width:44rem}
+.entries li{
+  display:grid;grid-template-columns:9.5rem 1fr;gap:1.25rem;
+  padding:.95rem 0;border-bottom:1px solid var(--rule);
+}
+.entries li:first-child{padding-top:0}
+.entries li:last-child{border-bottom:0;padding-bottom:0}
+@media (max-width:46rem){
+  .entries li{grid-template-columns:1fr;gap:.2rem}
+}
+.when{
+  font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:500;padding-top:.3rem;
+}
+.what strong{font-weight:700}
+.what span{display:block;color:var(--ink-2);font-size:.94rem;margin-top:.15rem}
+.badge{
+  display:inline-block;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  font-weight:700;color:var(--accent);border:1px solid var(--accent);
+  border-radius:2px;padding:.12rem .4rem;margin-left:.45rem;vertical-align:.09em;
+}
+
+/* ---------- contact ---------- */
+.contact{background:var(--paper-2);border-top:1px solid var(--rule);margin-top:0}
+.contact .sec-grid{padding:clamp(2.5rem,7vh,4rem) 0}
+.cta{
+  display:inline-block;font-weight:700;font-size:.95rem;letter-spacing:.02em;
+  color:var(--paper);background:var(--ink);text-decoration:none;
+  padding:.72rem 1.5rem;border-radius:2px;margin-top:.4rem;
+  transition:background .18s ease,transform .18s ease;
+}
+.cta:hover{background:var(--accent);transform:translateY(-1px)}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s ease}
+a:hover{border-bottom-color:currentColor}
+footer{
+  border-top:1px solid var(--rule);padding:2rem 0 3rem;
+  font-size:.8rem;color:var(--ink-2);
+}
+
+/* ---------- entrance ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .fade{opacity:0;transform:translateY(14px);animation:rise .85s cubic-bezier(.2,.7,.3,1) forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.28s}.d4{animation-delay:.4s}
+  @keyframes rise{to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow fade d1">Durham University &middot; Computer Science</p>
+  <h1 class="fade d2">Sarah Wyer</h1>
+  <p class="statement fade d3">I find discrimination in AI&nbsp;systems, and I show organisations <em>what to do about it.</em></p>
+  <p class="lede fade d4">PhD researcher at Durham University, supervised by Professor Sue Black OBE and Professor Noura Al Moubayed. Creator of Discrimination DRIFT. Before academia I was a Data Architect at FDM Group.</p>
+</header>
+
+<section>
+  <div class="sec-grid">
+    <h2>Framework</h2>
+    <div class="body">
+      <h3>Discrimination DRIFT</h3>
+      <p class="pull">Most organisations can tell that a model produced something harmful. Very few can say at what point it entered the system, or whose job it is to fix.</p>
+      <p>Discrimination DRIFT traces a discriminatory output back through the system that produced it, and identifies who is accountable at each stage. The point is practical: knowing a model caused harm is not the same as knowing which team can act on it.</p>
+      <p>Published in <em>AI and Ethics</em>, 2026.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-grid">
+    <h2>Research</h2>
+    <div class="body">
+      <p>I measure how large language models treat people differently by gender, class and race, across successive generations of GPT models and 450,000 generated responses.</p>
+      <ul class="entries">
+        <li>
+          <span class="when">2026</span>
+          <span class="what"><strong>Discrimination DRIFT</strong><span><em>AI and Ethics</em></span></span>
+        </li>
+        <li>
+          <span class="when">2025</span>
+          <span class="what"><strong>Algorithmic bias</strong><span><em>AI and Ethics</em></span></span>
+        </li>
+        <li>
+          <span class="when">2026</span>
+          <span class="what"><strong>Harm laundering in language model output</strong><em class="badge">EMNLP 2026</em><span>Accepted at EMNLP 2026, main conference. Acceptance rate 15.4%.</span></span>
+        </li>
+        <li>
+          <span class="when">Under review</span>
+          <span class="what"><strong>Intersectional harm</strong><span>In review</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-grid">
+    <h2>Speaking</h2>
+    <div class="body">
+      <p>I speak on discrimination in AI to technical, policy and general audiences, and adjust the level without losing the substance.</p>
+      <ul class="entries">
+        <li>
+          <span class="when">Sept 2026</span>
+          <span class="what"><strong>Conference on Protecting Women Online</strong><span>The Open University</span></span>
+        </li>
+        <li>
+          <span class="when">July 2026</span>
+          <span class="what"><strong>House of Commons</strong><span>UKAI and NCWGB roundtable on Safety by Design, where my research provided the evidence base</span></span>
+        </li>
+        <li>
+          <span class="when">April 2025</span>
+          <span class="what"><strong>SIETAR, international keynote</strong><span>"Discrimination DRIFT: Reshaping the AI Divide"</span></span>
+        </li>
+        <li>
+          <span class="when">Dec 2024</span>
+          <span class="what"><strong>Qatar</strong><span>AI and data governance</span></span>
+        </li>
+        <li>
+          <span class="when">Jan 2024</span>
+          <span class="what"><strong>GCHQ</strong><span>Invited talk to the Director and Heads of Department</span></span>
+        </li>
+        <li>
+          <span class="when">2024</span>
+          <span class="what"><strong>Digital Leaders Public Sector Innovation Conference</strong><span>Panellist, AI and ethics in the public sector</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-grid">
+    <h2>Teaching</h2>
+    <div class="body">
+      <p>At Corndel I educate the next generation of data and AI professionals, teaching and assessing practice on undergraduate degree apprenticeships. My learners range from people entering the field to senior staff.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="contact">
+  <div class="wrap">
+    <div class="sec-grid">
+      <h2>Work with me</h2>
+      <div class="body">
+        <h3>Available for speaking, AI ethics consulting and advisory work.</h3>
+        <p>If you are inviting me to speak, it helps to include the date, the audience, the format and the length.</p>
+        <a class="cta" href="https://www.linkedin.com/in/sarahwyerai/">Get in touch on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    Sarah Wyer &middot; Department of Computer Science, Durham University
+  </footer>
+</div>
+
+</body>
+</html>
