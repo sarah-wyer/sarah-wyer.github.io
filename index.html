@@ -281,6 +281,18 @@ footer{
 
 <section>
   <div class="sec-grid">
+    <h2>Affiliations</h2>
+    <div class="body">
+      <ul class="venues">
+        <li><strong>National Council of Women of Great Britain</strong><span>Member</span></li>
+        <li><strong>UKAI</strong><span>Women Working Group</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-grid">
     <h2>Teaching</h2>
     <div class="body">
       <p>At Corndel I educate the next generation of data and AI professionals, teaching and assessing practice on undergraduate degree apprenticeships. My learners range from people entering the field to senior staff.</p>
@@ -315,7 +327,8 @@ footer{
 
   // ticker: venues, duplicated once so the -50% loop is seamless
   var venues = ['GCHQ','House of Commons','SIETAR Keynote','World Summit AI','EMNLP 2026',
-                'TechWomen 100','Digital Leaders','The Open University','Durham University'];
+                'TechWomen 100','Digital Leaders','UKAI','National Council of Women',
+                'The Open University','Durham University'];
   var t = document.getElementById('tick');
   if (t) t.innerHTML = venues.concat(venues).map(function(v){
     return '<span>' + v + '</span>';
