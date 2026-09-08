@@ -16,22 +16,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Karla:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F6F2EA;
-  --paper-2:#EFE9DD;
-  --ink:#161310;
-  --ink-2:#57503F;
-  --rule:#D9D0BE;
+  --paper:#FFFFFF;
+  --paper-2:#F4F5F2;
+  --ink:#101311;
+  --ink-2:#5A605B;
+  --rule:#E2E4DF;
   --accent:#1E4A37;
   --accent-soft:#2F6B51;
   --measure:34rem;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --paper:#12100D;
-    --paper-2:#1A1713;
-    --ink:#EDE6D8;
-    --ink-2:#A39B88;
-    --rule:#332D24;
+    --paper:#0D0F0E;
+    --paper-2:#141716;
+    --ink:#E9ECE8;
+    --ink-2:#969C96;
+    --rule:#262A28;
     --accent:#7FBB9E;
     --accent-soft:#5E9B82;
   }
@@ -48,25 +48,20 @@ body{
   line-height:1.62;
   -webkit-font-smoothing:antialiased;
 }
-/* faint paper tooth */
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 .wrap{position:relative;z-index:1;max-width:60rem;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem)}
 
 /* ---------- masthead ---------- */
 header{padding:clamp(3.5rem,11vh,7.5rem) 0 clamp(2.5rem,6vh,4rem)}
-.hero{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,.58fr);
-  gap:clamp(1.75rem,5vw,3.5rem);align-items:end}
-.portrait{margin:0}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(1.5rem,5vw,3.25rem);align-items:end}
+.portrait{margin:0;width:clamp(8.5rem,15vw,11.5rem)}
 .portrait img{
-  width:100%;display:block;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;
-  border:1px solid var(--rule);filter:saturate(.96);
+  width:100%;display:block;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;
+  border:1px solid var(--rule);
 }
 @media (max-width:52rem){
   .hero{grid-template-columns:1fr}
-  .portrait{max-width:17rem;margin-top:.5rem}
+  .portrait{width:8.5rem;margin-top:1.25rem}
 }
 .eyebrow{
   font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
@@ -273,7 +268,7 @@ footer{
         </li>
         <li>
           <span class="when">Dec 2024</span>
-          <span class="what"><strong>Qatar</strong><span>AI and data governance</span></span>
+          <span class="what"><strong>World Summit AI, Qatar</strong><span>AI and data governance</span></span>
         </li>
         <li>
           <span class="when">Jan 2024</span>
@@ -323,7 +318,7 @@ footer{
   var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ticker: venues, duplicated once so the -50% loop is seamless
-  var venues = ['GCHQ','House of Commons','SIETAR Keynote','EMNLP 2026','Qatar',
+  var venues = ['GCHQ','House of Commons','SIETAR Keynote','World Summit AI','EMNLP 2026',
                 'Digital Leaders','The Open University','Durham University'];
   var t = document.getElementById('tick');
   if (t) t.innerHTML = venues.concat(venues).map(function(v){
