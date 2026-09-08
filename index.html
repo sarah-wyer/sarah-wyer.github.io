@@ -8,6 +8,8 @@
 <meta property="og:title" content="Sarah Wyer">
 <meta property="og:description" content="I find discrimination in AI systems, and I show organisations what to do about it.">
 <meta property="og:type" content="profile">
+<meta property="og:image" content="https://sarah-wyer.github.io/headshot.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23161310'/><text y='.9em' x='.12em' font-size='78' font-family='Georgia,serif' fill='%23E8DFD0'>W</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +21,8 @@
   --ink:#161310;
   --ink-2:#57503F;
   --rule:#D9D0BE;
-  --accent:#9A3B25;
-  --accent-soft:#C4623F;
+  --accent:#1E4A37;
+  --accent-soft:#2F6B51;
   --measure:34rem;
 }
 @media (prefers-color-scheme:dark){
@@ -30,8 +32,8 @@
     --ink:#EDE6D8;
     --ink-2:#A39B88;
     --rule:#332D24;
-    --accent:#E0764F;
-    --accent-soft:#C4623F;
+    --accent:#7FBB9E;
+    --accent-soft:#5E9B82;
   }
 }
 *{box-sizing:border-box}
@@ -55,6 +57,17 @@ body::before{
 
 /* ---------- masthead ---------- */
 header{padding:clamp(3.5rem,11vh,7.5rem) 0 clamp(2.5rem,6vh,4rem)}
+.hero{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,.58fr);
+  gap:clamp(1.75rem,5vw,3.5rem);align-items:end}
+.portrait{margin:0}
+.portrait img{
+  width:100%;display:block;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;
+  border:1px solid var(--rule);filter:saturate(.96);
+}
+@media (max-width:52rem){
+  .hero{grid-template-columns:1fr}
+  .portrait{max-width:17rem;margin-top:.5rem}
+}
 .eyebrow{
   font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
   color:var(--ink-2);font-weight:500;margin:0 0 clamp(1.5rem,4vh,2.5rem)
@@ -180,10 +193,18 @@ footer{
 <div class="wrap">
 
 <header>
-  <p class="eyebrow fade d1">Durham University &middot; Computer Science</p>
-  <h1 class="fade d2">Sarah Wyer</h1>
-  <p class="statement fade d3">I find discrimination in AI&nbsp;systems, and I show organisations <em>what to do about it.</em></p>
-  <p class="lede fade d4">PhD researcher at Durham University, supervised by Professor Sue Black OBE and Professor Noura Al Moubayed. Creator of Discrimination DRIFT. Before academia I was a Data Architect at FDM Group.</p>
+ <div class="hero">
+  <div>
+    <p class="eyebrow fade d1">Durham University &middot; Computer Science</p>
+    <h1 class="fade d2">Sarah Wyer</h1>
+    <p class="statement fade d3">I find discrimination in AI&nbsp;systems, and I show organisations <em>what to do about it.</em></p>
+    <p class="lede fade d4">PhD researcher at Durham University, supervised by Professor Sue Black OBE and Professor Noura Al Moubayed. Creator of Discrimination DRIFT. Before academia I was a Data Architect at FDM Group.</p>
+  </div>
+  <figure class="portrait fade d3">
+    <img src="headshot.jpg" width="1024" height="1024"
+         alt="Sarah Wyer, arms folded, wearing a dark green jacket against a pale background">
+  </figure>
+ </div>
 </header>
 </div>
 
