@@ -16,22 +16,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Karla:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F6F2EA;
-  --paper-2:#EFE9DD;
-  --ink:#161310;
-  --ink-2:#57503F;
-  --rule:#D9D0BE;
+  --paper:#FFFFFF;
+  --paper-2:#F4F5F2;
+  --ink:#101311;
+  --ink-2:#5A605B;
+  --rule:#E2E4DF;
   --accent:#1E4A37;
   --accent-soft:#2F6B51;
   --measure:34rem;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --paper:#12100D;
-    --paper-2:#1A1713;
-    --ink:#EDE6D8;
-    --ink-2:#A39B88;
-    --rule:#332D24;
+    --paper:#0D0F0E;
+    --paper-2:#141716;
+    --ink:#E9ECE8;
+    --ink-2:#969C96;
+    --rule:#262A28;
     --accent:#7FBB9E;
     --accent-soft:#5E9B82;
   }
@@ -48,25 +48,20 @@ body{
   line-height:1.62;
   -webkit-font-smoothing:antialiased;
 }
-/* faint paper tooth */
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 .wrap{position:relative;z-index:1;max-width:60rem;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem)}
 
 /* ---------- masthead ---------- */
 header{padding:clamp(3.5rem,11vh,7.5rem) 0 clamp(2.5rem,6vh,4rem)}
-.hero{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,.58fr);
-  gap:clamp(1.75rem,5vw,3.5rem);align-items:end}
-.portrait{margin:0}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(1.5rem,5vw,3.25rem);align-items:end}
+.portrait{margin:0;width:clamp(8.5rem,15vw,11.5rem)}
 .portrait img{
-  width:100%;display:block;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;
-  border:1px solid var(--rule);filter:saturate(.96);
+  width:100%;display:block;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;
+  border:1px solid var(--rule);
 }
 @media (max-width:52rem){
   .hero{grid-template-columns:1fr}
-  .portrait{max-width:17rem;margin-top:.5rem}
+  .portrait{width:8.5rem;margin-top:1.25rem}
 }
 .eyebrow{
   font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
@@ -85,6 +80,11 @@ h1{
 .statement em{font-style:italic;color:var(--accent)}
 .lede{max-width:var(--measure);color:var(--ink-2);margin:0}
 .lede a{color:inherit}
+.accolade{
+  margin:1.15rem 0 0;font-size:.78rem;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);
+  display:inline-block;border-top:2px solid var(--accent);padding-top:.5rem;
+}
 
 /* ---------- rules & sections ---------- */
 section{
@@ -127,6 +127,14 @@ h3{
 }
 .what strong{font-weight:700}
 .what span{display:block;color:var(--ink-2);font-size:.94rem;margin-top:.15rem}
+
+/* venues: no dates, so the record reads as a body of work */
+.venues{list-style:none;margin:1.4rem 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(1.25rem,3vw,2.5rem)}
+@media (max-width:46rem){.venues{grid-template-columns:1fr}}
+.venues li{padding:.85rem 0;border-top:1px solid var(--rule)}
+.venues strong{display:block;font-weight:700;font-size:1.02rem}
+.venues span{display:block;color:var(--ink-2);font-size:.9rem;margin-top:.1rem}
 .badge{
   display:inline-block;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
   font-weight:700;color:var(--accent);border:1px solid var(--accent);
@@ -199,6 +207,7 @@ footer{
     <h1 class="fade d2">Sarah Wyer</h1>
     <p class="statement fade d3">I find discrimination in AI&nbsp;systems, and I show organisations <em>what to do about it.</em></p>
     <p class="lede fade d4">PhD researcher at Durham University, supervised by Professor Sue Black OBE and Professor Noura Al Moubayed. Creator of Discrimination DRIFT. Before academia I was a Data Architect at FDM Group.</p>
+    <p class="accolade fade d4">TechWomen 100 Award Winner, 2025</p>
   </div>
   <figure class="portrait fade d3">
     <img src="headshot.jpg" width="1024" height="1024"
@@ -258,31 +267,13 @@ footer{
     <h2>Speaking</h2>
     <div class="body">
       <p>I speak on discrimination in AI to technical, policy and general audiences, and adjust the level without losing the substance.</p>
-      <ul class="entries">
-        <li>
-          <span class="when">Sept 2026</span>
-          <span class="what"><strong>Conference on Protecting Women Online</strong><span>The Open University</span></span>
-        </li>
-        <li>
-          <span class="when">July 2026</span>
-          <span class="what"><strong>House of Commons</strong><span>UKAI and NCWGB roundtable on Safety by Design, where my research provided the evidence base</span></span>
-        </li>
-        <li>
-          <span class="when">April 2025</span>
-          <span class="what"><strong>SIETAR, international keynote</strong><span>"Discrimination DRIFT: Reshaping the AI Divide"</span></span>
-        </li>
-        <li>
-          <span class="when">Dec 2024</span>
-          <span class="what"><strong>Qatar</strong><span>AI and data governance</span></span>
-        </li>
-        <li>
-          <span class="when">Jan 2024</span>
-          <span class="what"><strong>GCHQ</strong><span>Invited talk to the Director and Heads of Department</span></span>
-        </li>
-        <li>
-          <span class="when">2024</span>
-          <span class="what"><strong>Digital Leaders Public Sector Innovation Conference</strong><span>Panellist, AI and ethics in the public sector</span></span>
-        </li>
+      <ul class="venues">
+        <li><strong>GCHQ</strong><span>Invited talk to the Director and Heads of Department</span></li>
+        <li><strong>House of Commons</strong><span>UKAI and NCWGB roundtable on Safety by Design, where my research provided the evidence base</span></li>
+        <li><strong>SIETAR</strong><span>International keynote, "Discrimination DRIFT: Reshaping the AI Divide"</span></li>
+        <li><strong>World Summit AI, Qatar</strong><span>AI and data governance</span></li>
+        <li><strong>Digital Leaders</strong><span>Public Sector Innovation Conference, panellist on AI and ethics in the public sector</span></li>
+        <li><strong>The Open University</strong><span>Conference on Protecting Women Online</span></li>
       </ul>
     </div>
   </div>
@@ -323,8 +314,8 @@ footer{
   var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ticker: venues, duplicated once so the -50% loop is seamless
-  var venues = ['GCHQ','House of Commons','SIETAR Keynote','EMNLP 2026','Qatar',
-                'Digital Leaders','The Open University','Durham University'];
+  var venues = ['GCHQ','House of Commons','SIETAR Keynote','World Summit AI','EMNLP 2026',
+                'TechWomen 100','Digital Leaders','The Open University','Durham University'];
   var t = document.getElementById('tick');
   if (t) t.innerHTML = venues.concat(venues).map(function(v){
     return '<span>' + v + '</span>';
