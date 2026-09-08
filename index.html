@@ -142,6 +142,37 @@ footer{
   .fade{opacity:0;transform:translateY(14px);animation:rise .85s cubic-bezier(.2,.7,.3,1) forwards}
   .d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.28s}.d4{animation-delay:.4s}
   @keyframes rise{to{opacity:1;transform:none}}
+
+  /* hero, word by word */
+  .statement .w{display:inline-block;opacity:0;transform:translateY(.5em) rotate(1.2deg);
+    animation:word .7s cubic-bezier(.2,.75,.25,1) forwards}
+
+  /* scroll reveals, classes applied by JS */
+  .rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  .rv.in{opacity:1;transform:none}
+
+  .entries li{transition:padding-left .3s cubic-bezier(.2,.7,.3,1),background-color .3s ease}
+  .entries li:hover{padding-left:.7rem;background:color-mix(in srgb,var(--accent) 5%,transparent)}
+}
+@keyframes word{to{opacity:1;transform:none}}
+
+/* ---------- ticker ---------- */
+.ticker{
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  overflow:hidden;padding:.9rem 0;margin-bottom:0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.ticker-track{display:flex;width:max-content;animation:slide 38s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{
+  font-family:"Instrument Serif",Georgia,serif;font-size:clamp(1.05rem,2.4vw,1.45rem);
+  color:var(--ink-2);white-space:nowrap;padding:0 1.4rem;
+}
+.ticker-track span::after{content:"·";color:var(--accent);margin-left:1.4rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){
+  .ticker-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center}
 }
 </style>
 </head>
@@ -154,6 +185,13 @@ footer{
   <p class="statement fade d3">I find discrimination in AI&nbsp;systems, and I show organisations <em>what to do about it.</em></p>
   <p class="lede fade d4">PhD researcher at Durham University, supervised by Professor Sue Black OBE and Professor Noura Al Moubayed. Creator of Discrimination DRIFT. Before academia I was a Data Architect at FDM Group.</p>
 </header>
+</div>
+
+<div class="ticker" aria-label="Where Sarah has spoken">
+  <div class="ticker-track" id="tick"></div>
+</div>
+
+<div class="wrap">
 
 <section>
   <div class="sec-grid">
@@ -259,5 +297,61 @@ footer{
   </footer>
 </div>
 
+<script>
+(function(){
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ticker: venues, duplicated once so the -50% loop is seamless
+  var venues = ['GCHQ','House of Commons','SIETAR Keynote','EMNLP 2026','Qatar',
+                'Digital Leaders','The Open University','Durham University'];
+  var t = document.getElementById('tick');
+  if (t) t.innerHTML = venues.concat(venues).map(function(v){
+    return '<span>' + v + '</span>';
+  }).join('');
+
+  if (calm) return;
+
+  // hero statement, word by word
+  var s = document.querySelector('.statement');
+  if (s) {
+    var n = 0;
+    (function wrapWords(node){
+      [].slice.call(node.childNodes).forEach(function(child){
+        if (child.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          child.nodeValue.split(/(\s+)/).forEach(function(part){
+            if (!part) return;
+            if (!part.trim()) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement('span');
+            w.className = 'w';
+            w.textContent = part;
+            w.style.animationDelay = (0.34 + (n++) * 0.045) + 's';
+            frag.appendChild(w);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          wrapWords(child);
+        }
+      });
+    })(s);
+  }
+
+  // scroll reveals
+  var targets = document.querySelectorAll('section .body > *, .contact .body > *, section h2');
+  [].forEach.call(targets, function(el){ el.classList.add('rv'); });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var sibs = [].slice.call(e.target.parentNode.children);
+      e.target.style.transitionDelay = Math.min(sibs.indexOf(e.target), 6) * 0.07 + 's';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, {rootMargin: '0px 0px -12% 0px', threshold: 0.15});
+
+  [].forEach.call(targets, function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>
