@@ -90,8 +90,12 @@ h1{
      the source order to be */
   .hero{min-height:auto;padding-top:4.5rem;display:flex;flex-direction:column-reverse}
   .hero picture{display:block;width:100%}
-  .hero-img{position:relative;height:auto;aspect-ratio:4/3.6;object-position:50% 12%}
-  .hero .wrap{padding-top:1.5rem;padding-bottom:2rem}
+  /* hero-tall.jpg carries ~27% empty plate above the head; crop past it so the
+     portrait sits close under the text instead of behind a band of background */
+  .hero-img{position:relative;height:auto;aspect-ratio:4/3.6;object-position:50% 85%}
+  /* the plate sits directly under the meta line on a phone, so this padding is
+     the whole gap between "Creator of Discrimination DRIFT" and the headshot */
+  .hero .wrap{padding-top:1.5rem;padding-bottom:.75rem}
 }
 
 /* ---------- horizontal scroll band ---------- */
